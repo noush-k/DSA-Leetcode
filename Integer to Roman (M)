@@ -1,0 +1,96 @@
+//Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+
+class Solution {
+public:
+    string intToRoman(int num) {
+        string roman;
+        fflush(stdin);
+        if(num/1000!=0)
+        {
+            for(int i=0; i<num/1000; i++)
+                roman=roman+'M';
+            num=num%1000;
+        }
+        if(num/900!=0)
+        {
+            for(int i=0; i<num/900; i++)
+                roman=roman+"CM";
+            num=num%900;
+        }
+        if(num/500!=0)
+        {
+            for(int i=0; i<num/500; i++)
+                roman=roman+'D';
+            num=num%500;
+        }
+        if(num/400!=0)
+        {
+            for(int i=0; i<num/400; i++)
+                roman=roman+"CD";
+            num=num%400;
+        }
+        if(num/100!=0)
+        {
+            for(int i=0; i<num/100; i++)
+                roman=roman+'C';
+            num=num%100;
+        }
+        if(num/90!=0)
+        {
+            for(int i=0; i<num/90; i++)
+                roman=roman+"XC";
+            num=num%90;
+        }
+        if(num/50!=0)
+        {
+            for(int i=0; i<num/50; i++)
+                roman=roman+'L';
+            num=num%50;
+        }
+        if(num/40!=0)
+        {
+            for(int i=0; i<num/40; i++)
+                roman=roman+"XL";
+            num=num%40;
+        }
+        if(num/10!=0)
+        {
+            for(int i=0; i<num/10; i++)
+                roman=roman+'X';
+            num=num%10;
+        }
+        if(num/9!=0)
+        {
+            for(int i=0; i<num/9; i++)
+                roman=roman+"IX";
+            num=num%9;
+        }
+        if(num/5!=0)
+        {
+            for(int i=0; i<num/5; i++)
+                roman=roman+'V';
+            num=num%5;
+        }
+        if(num/4!=0)
+        {
+            for(int i=0; i<num/4; i++)
+                roman=roman+"IV";
+            num=num%4;
+        }
+        if(num/1!=0)
+        {
+            for(int i=0; i<num/1; i++)
+                roman=roman+'I';
+            num=num%1;
+        }
+        return roman;
+    }
+};
