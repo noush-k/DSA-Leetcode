@@ -1,0 +1,40 @@
+//Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
+A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        if(digits == ""){return vector<string> ();}
+        string arr[10];
+        int sum = 0;
+        for(int i = 2; i <= 9; i++){
+            // int a = 3*i;
+            arr[i] = "";
+            for(int j = sum; j < sum+3; j++){
+                arr[i] += 'a'+j;
+            }
+            sum+=3;
+            if(i == 7 || i==9){
+                arr[i]+='a'+sum;
+                sum++;
+            }
+            // cout<<arr[i]<<" ";
+        }
+        vector<string> vs;
+        vs.push_back("");
+        for(char ch : digits){
+            int x = ch-'0';
+            vector<string> temp;
+            for(auto aa : vs){
+                for(char bb : arr[x]){
+                    string s = aa;
+                    s += bb;
+                    temp.push_back(s);
+                }
+            }
+            vs = temp;
+        }
+        return vs;
+        
+    }
+};
