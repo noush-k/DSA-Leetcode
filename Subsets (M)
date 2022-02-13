@@ -1,0 +1,50 @@
+//Given an integer array nums of unique elements, return all possible subsets (the power set).
+The solution set must not contain duplicate subsets. Return the solution in any order.
+
+class Solution {
+public:
+    void solve(vector<vector<int>> &ans, vector<int>& nums, int cnt, vector<int> subset)
+        {
+            if(cnt==nums.size())   //traversed all elements
+            {
+                ans.push_back(subset);
+                return;
+            }
+            
+            solve(ans,nums,cnt+1,subset);   //choice 1: don't push current element
+            
+            auto v=subset; v.push_back(nums[cnt]);
+            solve(ans,nums,cnt+1,v);         //choice 2: push current element
+        }
+    vector<vector<int>> subsets(vector<int>& nums) {
+         vector<vector<int>> ans;
+            solve(ans,nums,0,{});
+            return ans;
+        
+    }
+};
+
+
+class Solution {
+public:
+    void findsub( vector<vector<int>> &res , vector<int> nums , int i){
+        int j = 0;
+        vector<int>v;
+        while(i>0){
+            if((i&1)==1) v.push_back(nums[j]);
+            j++;
+            i = i>>1;
+        }
+        res.push_back(v);
+        return;
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> res;
+        int n = nums.size();
+        for(int i = 0 ; i < (1<<n) ;i++){
+            findsub(res,nums,i);
+        }
+        return res;
+        
+    }
+};
